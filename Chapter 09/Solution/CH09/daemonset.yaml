@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: prometheus-node-exporter
+spec:
+  selector:
+    matchLabels:
+      tier: monitoring
+      name: prometheus-node-exporter
+  template:
+    metadata:
+      labels:
+        tier: monitoring
+        name: prometheus-node-exporter
+    spec:
+      containers:
+      - name: prometheus-node-exporter
+        image: quay.io/prometheus/node-exporter
+        ports:
+        - containerPort: 9100
+
